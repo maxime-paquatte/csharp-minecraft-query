@@ -126,13 +126,13 @@ namespace MinecraftStatus
 
 
         /// <summary>
-        /// Get the status of the given host and optional port
+        /// Get the status of the given host and optional port (TIP for linux and docker users, if you run this from machine where is server use ip from `netstat -plun`
         /// </summary>
         /// <param name="host">The host name or address (monserver.com or 123.123.123.123)</param>
         /// <param name="port">The query port, by default is 25565</param>
         public static Status GetStatus(string host, int port = 25565)
         {
-            var e = new IPEndPoint(IPAddress.Any, port);
+            var e = new IPEndPoint(IPAddress.Any, 0);
             using (var u = new UdpClient(e))
             {
                 try
